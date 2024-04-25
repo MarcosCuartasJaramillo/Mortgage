@@ -1,0 +1,27 @@
+class Mortgage:
+  def __init__(self, initialloan, year, rate):
+    self.initialloan=initialloan
+    self.year=year
+    self.__rate=rate
+  def __str__(self):
+    return f'Mortgage: Initial Loan amount: {self.amount} maturity rate {self.year} interestrate {self.__rate}%'
+
+  def get_rate(self):
+    return self.__rate
+
+  def set_rate(self, newRate):
+    if newRate >= 0:
+      self.__rate=newRate
+    else:
+      print('interest must be positive')
+
+
+  def payment(self):
+    B=self.initialloan
+    n=self.year*12
+    r=self.__rate/100/12
+
+    return B * (r *(1+r)**n)/((1+r)**n-1)
+m = Mortgage(100000,10,6)
+payment = m.payment()
+print(f"The monthly payment is: ${payment:.2f}")
